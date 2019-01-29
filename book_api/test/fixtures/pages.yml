@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2019-01-29 23:46:12
+  number: 1
+  book: one
+
+two:
+  name: MyString
+  date: 2019-01-29 23:46:12
+  number: 1
+  book: two

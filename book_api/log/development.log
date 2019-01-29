@@ -1,0 +1,334 @@
+  [1m[35m (592.1ms)[0m  [1m[35mCREATE DATABASE "book_api_development" ENCODING = 'unicode'[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (393.3ms)[0m  [1m[35mCREATE DATABASE "book_api_test" ENCODING = 'unicode'[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (29.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (32.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1587755014487084835)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateUsers (20190129204544)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (33.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "password_digest" character varying, "auth_token" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20190129204544_create_users.rb:3
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_auth_token" ON "users"  ("auth_token")[0m
+  ↳ db/migrate/20190129204544_create_users.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204544"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateBooks (20190129204554)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (27.1ms)[0m  [1m[35mCREATE TABLE "books" ("id" bigserial primary key, "name" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_bc582ddd02"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20190129204554_create_books.rb:3
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_books_on_user_id" ON "books"  ("user_id")[0m
+  ↳ db/migrate/20190129204554_create_books.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204554"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreatePages (20190129204612)
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (22.5ms)[0m  [1m[35mCREATE TABLE "pages" ("id" bigserial primary key, "name" character varying, "date" timestamp, "number" integer, "book_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d8907839c8"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  ↳ db/migrate/20190129204612_create_pages.rb:3
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_pages_on_book_id" ON "pages"  ("book_id")[0m
+  ↳ db/migrate/20190129204612_create_pages.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204612"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateImages (20190129204623)
+  [1m[35m (5.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE TABLE "images" ("id" bigserial primary key, "name" character varying, "date" timestamp, "page_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_5bee2864d0"
+FOREIGN KEY ("page_id")
+  REFERENCES "pages" ("id")
+)[0m
+  ↳ db/migrate/20190129204623_create_images.rb:3
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_images_on_page_id" ON "images"  ("page_id")[0m
+  ↳ db/migrate/20190129204623_create_images.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204623"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateTexts (20190129204634)
+  [1m[35m (6.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (18.7ms)[0m  [1m[35mCREATE TABLE "texts" ("id" bigserial primary key, "content" character varying, "string" character varying, "page_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_6bea8c617e"
+FOREIGN KEY ("page_id")
+  REFERENCES "pages" ("id")
+)[0m
+  ↳ db/migrate/20190129204634_create_texts.rb:3
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_texts_on_page_id" ON "texts"  ("page_id")[0m
+  ↳ db/migrate/20190129204634_create_texts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204634"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (5.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-01-29 20:49:34.169052"], ["updated_at", "2019-01-29 20:49:34.169052"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1587755014487084835)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (209.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "book_api_development"[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (207.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "book_api_test"[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (582.6ms)[0m  [1m[35mCREATE DATABASE "book_api_development" ENCODING = 'unicode'[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (418.7ms)[0m  [1m[35mCREATE DATABASE "book_api_test" ENCODING = 'unicode'[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (38.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (24.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1587755014487084835)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateUsers (20190129204544)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (27.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "password_digest" character varying, "auth_token" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20190129204544_create_users.rb:3
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_auth_token" ON "users"  ("auth_token")[0m
+  ↳ db/migrate/20190129204544_create_users.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204544"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateBooks (20190129204554)
+  [1m[35m (8.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (21.6ms)[0m  [1m[35mCREATE TABLE "books" ("id" bigserial primary key, "name" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_bc582ddd02"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20190129204554_create_books.rb:3
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_books_on_user_id" ON "books"  ("user_id")[0m
+  ↳ db/migrate/20190129204554_create_books.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204554"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreatePages (20190129204612)
+  [1m[35m (5.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (25.2ms)[0m  [1m[35mCREATE TABLE "pages" ("id" bigserial primary key, "name" character varying, "date" timestamp, "number" integer, "book_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d8907839c8"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  ↳ db/migrate/20190129204612_create_pages.rb:3
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_pages_on_book_id" ON "pages"  ("book_id")[0m
+  ↳ db/migrate/20190129204612_create_pages.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204612"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateImages (20190129204623)
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE TABLE "images" ("id" bigserial primary key, "name" character varying, "date" timestamp, "page_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_5bee2864d0"
+FOREIGN KEY ("page_id")
+  REFERENCES "pages" ("id")
+)[0m
+  ↳ db/migrate/20190129204623_create_images.rb:3
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_images_on_page_id" ON "images"  ("page_id")[0m
+  ↳ db/migrate/20190129204623_create_images.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204623"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateTexts (20190129204634)
+  [1m[35m (6.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (22.4ms)[0m  [1m[35mCREATE TABLE "texts" ("id" bigserial primary key, "content" character varying, "string" character varying, "page_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_6bea8c617e"
+FOREIGN KEY ("page_id")
+  REFERENCES "pages" ("id")
+)[0m
+  ↳ db/migrate/20190129204634_create_texts.rb:3
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_texts_on_page_id" ON "texts"  ("page_id")[0m
+  ↳ db/migrate/20190129204634_create_texts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190129204634"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-01-29 21:03:02.214462"], ["updated_at", "2019-01-29 21:03:02.214462"]]
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1587755014487084835)[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/layalkashgari/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Exists (12.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nadiamuh@hotmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "auth_token", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Nadia"], ["password_digest", "$2a$10$mA6ZcSu/SSUsFP5St1Y5UeAZONnJ9P0Y4lg49fG6U7kjsNg9lh10e"], ["auth_token", "1B5fXBUeykGEUXRFd68Dh9JN"], ["email", "nadiamuh@hotmail.com"], ["created_at", "2019-01-29 21:08:29.480488"], ["updated_at", "2019-01-29 21:08:29.480488"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (11.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "samiamuh@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "auth_token", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Samiyah"], ["password_digest", "$2a$10$cOg5j8ywBvg5owgPP6G44.K8hukcXZXxR3YZ.yfwTzNCuS25Tykv6"], ["auth_token", "HfrqXHk3XDA6VXtGfCARsMQy"], ["email", "samiamuh@gmail.com"], ["created_at", "2019-01-29 21:08:29.593489"], ["updated_at", "2019-01-29 21:08:29.593489"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mBook Create (8.9ms)[0m  [1m[32mINSERT INTO "books" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Layal"], ["user_id", 1], ["created_at", "2019-01-29 21:08:29.624508"], ["updated_at", "2019-01-29 21:08:29.624508"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mBook Create (0.6ms)[0m  [1m[32mINSERT INTO "books" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Rafal"], ["user_id", 2], ["created_at", "2019-01-29 21:08:29.642232"], ["updated_at", "2019-01-29 21:08:29.642232"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mBook Create (0.6ms)[0m  [1m[32mINSERT INTO "books" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Lujain"], ["user_id", 1], ["created_at", "2019-01-29 21:08:29.650005"], ["updated_at", "2019-01-29 21:08:29.650005"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mBook Create (0.6ms)[0m  [1m[32mINSERT INTO "books" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Renad"], ["user_id", 2], ["created_at", "2019-01-29 21:08:29.654102"], ["updated_at", "2019-01-29 21:08:29.654102"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mPage Create (9.5ms)[0m  [1m[32mINSERT INTO "pages" ("name", "number", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "first day"], ["number", 1], ["book_id", 1], ["created_at", "2019-01-29 21:08:29.685145"], ["updated_at", "2019-01-29 21:08:29.685145"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:19
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mPage Create (0.4ms)[0m  [1m[32mINSERT INTO "pages" ("name", "number", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "month one"], ["number", 2], ["book_id", 1], ["created_at", "2019-01-29 21:08:29.704729"], ["updated_at", "2019-01-29 21:08:29.704729"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:20
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:20
+  [1m[36mPage Create (0.4ms)[0m  [1m[32mINSERT INTO "pages" ("name", "number", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "month two"], ["number", 3], ["book_id", 1], ["created_at", "2019-01-29 21:08:29.714797"], ["updated_at", "2019-01-29 21:08:29.714797"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:21
+  [1m[36mPage Create (0.6ms)[0m  [1m[32mINSERT INTO "pages" ("name", "number", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "month three"], ["number", 4], ["book_id", 1], ["created_at", "2019-01-29 21:08:29.719390"], ["updated_at", "2019-01-29 21:08:29.719390"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:22
+  [1m[36mPage Create (0.5ms)[0m  [1m[32mINSERT INTO "pages" ("name", "number", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "month four"], ["number", 5], ["book_id", 1], ["created_at", "2019-01-29 21:08:29.724442"], ["updated_at", "2019-01-29 21:08:29.724442"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:29
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:29
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:31
+  [1m[35m (1.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:32
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:32
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:34
+  [1m[36mPage Load (0.4ms)[0m  [1m[34mSELECT  "pages".* FROM "pages" WHERE "pages"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:34
+  [1m[36mImage Create (13.1ms)[0m  [1m[32mINSERT INTO "images" ("name", "date", "page_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "https://www.google.com.sa/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjQ_pbbt5PgAhUu1uAKHcUYDxsQjRx6BAgBEAU&url=https%3A%2F%2Fwww.ralphlauren.com%2Fbaby-babys-first-feat&psig=AOvVaw2S_fWfaRw287rrZvpzEgZK&ust=1548866556182167"], ["date", "2019-02-12 00:00:00"], ["page_id", 3], ["created_at", "2019-01-29 21:08:29.789775"], ["updated_at", "2019-01-29 21:08:29.789775"]]
+  ↳ db/seeds.rb:34
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:34
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:36
+  [1m[36mPage Load (0.5ms)[0m  [1m[34mSELECT  "pages".* FROM "pages" WHERE "pages"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:36
+  [1m[36mImage Create (0.5ms)[0m  [1m[32mINSERT INTO "images" ("name", "date", "page_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "https://www.google.com.sa/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjQ_pbbt5PgAhUu1uAKHcUYDxsQjRx6BAgBEAU&url=https%3A%2F%2Fwww.ralphlauren.com%2Fbaby-babys-first-feat&psig=AOvVaw2S_fWfaRw287rrZvpzEgZK&ust=1548866556182167"], ["date", "2016-05-12 00:00:00"], ["page_id", 3], ["created_at", "2019-01-29 21:08:29.816115"], ["updated_at", "2019-01-29 21:08:29.816115"]]
+  ↳ db/seeds.rb:36
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:36
