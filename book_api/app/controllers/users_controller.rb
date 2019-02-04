@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   end
 
   def create 
+
+    puts"\n\n\n\n _______" , user_params
     @user = User.create!(user_params)
     render json: @user
   end

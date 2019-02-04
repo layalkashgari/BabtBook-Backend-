@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
   before_action :require_token
   def index
-    byebug
     @books = @current_user.books
     render json: @books
   end 
@@ -17,7 +16,20 @@ class BooksController < ApplicationController
 
   def create 
     @book = Book.create(book_params)
-    render json: @book
+    # use the seed data and use @book.id for the id
+
+    Page.create({name: 'Cover', number: "1"})
+    Page.create({name: 'month one', number: "2", book_id: "1"})
+    Page.create({name: 'month two', number: "3", book_id: "1"})
+    Page.create({name: 'month three', number: "4", book_id: "1"})
+    Page.create({name: 'month four', number: "5", book_id: "1"})
+    Page.create({name: 'month five', number: "5", book_id: "1"})
+    Page.create({name: 'month six', number: "5", book_id: "1"})
+    Page.create({name: 'month seven', number: "5", book_id: "1"})
+    Page.create({name: 'month eight', number: "5", book_id: "1"})
+
+    render json: {book: @book, pages: @book.pages}
+     # is this right? user id 7 
   end
 
   def update 
