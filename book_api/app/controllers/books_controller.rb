@@ -15,20 +15,23 @@ class BooksController < ApplicationController
   end
 
   def create 
+    puts "\n\n\n\n\n\n\n )))))" ,  book_params
     @book = Book.create(book_params)
     # use the seed data and use @book.id for the id
 
-    Page.create({name: 'Cover', number: "1"})
-    Page.create({name: 'month one', number: "2", book_id: "1"})
-    Page.create({name: 'month two', number: "3", book_id: "1"})
-    Page.create({name: 'month three', number: "4", book_id: "1"})
-    Page.create({name: 'month four', number: "5", book_id: "1"})
-    Page.create({name: 'month five', number: "5", book_id: "1"})
-    Page.create({name: 'month six', number: "5", book_id: "1"})
-    Page.create({name: 'month seven', number: "5", book_id: "1"})
-    Page.create({name: 'month eight', number: "5", book_id: "1"})
+    # Page.create({name: 'Cover', number: "1"})
+    Page.create({name: 'month one', number: "2", book_id: @book.id  })
+    Page.create({name: 'month two', number: "3", book_id: @book.id })
+    Page.create({name: 'month three', number: "4", book_id: @book.id })
+    Page.create({name: 'month four', number: "5", book_id: @book.id })
+    Page.create({name: 'month five', number: "5", book_id: @book.id })
+    Page.create({name: 'month six', number: "5", book_id: @book.id })
+    Page.create({name: 'month seven', number: "5", book_id: @book.id })
+    Page.create({name: 'month eight', number: "5", book_id: @book.id })
+    Page.create({name: 'month eight', number: "5", book_id: @book.id })
 
     render json: {book: @book, pages: @book.pages}
+    # render json: {book: @book}
      # is this right? user id 7 
   end
 
@@ -49,7 +52,7 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(
-      :name, :user #do i need to have user? 
+      :name, :user_id #do i need to have user? 
     ) 
   end
 

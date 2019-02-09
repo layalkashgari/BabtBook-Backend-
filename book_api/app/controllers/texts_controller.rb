@@ -6,7 +6,7 @@ class TextsController < ApplicationController
     if params[:page_id]
       @texts = Page.find(params[:page_id]).texts 
     else 
-      @texts = texts.all 
+      @texts = Text.all 
     end 
     render json: @texts
   end 
@@ -32,10 +32,10 @@ class TextsController < ApplicationController
 
   private 
   def set_text
-    @text = text.find(params[:id])
+    @text = Text.find(params[:id])
   end 
   def text_params 
-    params.require(:text).permit(:content, :page_id)
+    params.require(:text).permit(:content, :page_id, :name)
   end
 
 end

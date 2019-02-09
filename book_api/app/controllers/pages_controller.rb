@@ -32,7 +32,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
   end 
   def page_params 
-    params.require(:page).permit(:name, :date, :number, :book_id)
+    params.require(:page).permit(:name, :date, :number, :image, :book_id)
   end
   # def index
   # end

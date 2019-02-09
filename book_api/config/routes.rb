@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 # from jackis auth 
 
 get "/books", to: "books#index"
+# get "/books", to: "books#show"
+
 get"/books/pages", to:"books#create"
 post "/users", to: "users#create"
 get "/users/:id", to: "users#show"
@@ -32,12 +34,17 @@ get "/users/:id/books", to: "books#index"
 get "/books/:id", to: "books#show"
 post "/texts", to: "texts#create"
 post "/books", to: "books#create" 
-# is this right? 
+get "/texts", to: "texts#index"
+# get "/texts", to: "texts#show"
+
+post "/images", to: "images#create"
 
 
+# ask 
 
 
 post "/login", to: "sessions#create"
+put "/texts", to: "texts#update" 
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

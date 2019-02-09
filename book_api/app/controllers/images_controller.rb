@@ -16,8 +16,8 @@ class ImagesController < ApplicationController
   end 
 
   def create 
-    @image = Image.create(image_params)
-    render json: @image
+    @image = Image.new(image_params)
+    render json: @image.as_json.merge({image_url: url_for(@image.image)})
   end 
 
   def update 
@@ -35,7 +35,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end 
   def image_params 
-    params.require(:image).permit(:name, :date, :page_id)
+    params.permit(:page_id, :image)
   end
 
 end

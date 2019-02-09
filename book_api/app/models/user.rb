@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true 
   validates :password, length: { minimum: 4 }
 
+  mount_uploader :image, ImageUploader
+
+
   def downcase_email 
     self.email = email.downcase if self.email.present?
   end
